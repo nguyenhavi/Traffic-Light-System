@@ -1,0 +1,5 @@
+`define GREEN_TIME_DEFAULT 5
+`define YELLOW_TIME_DEFAULT 4
+`define RED_TIME_DEFAULT 9
+`define MAX_TIME 99
+`define MIN_TIME 0
