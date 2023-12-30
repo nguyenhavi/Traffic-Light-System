@@ -20,6 +20,12 @@ main dut(clk, reset, buttonChangeMode, buttonConfig, buttonChangeLight, buttonIn
 initial begin
     clk = 0;
     reset = 1;
+    buttonChangeMode = 0;
+    buttonConfig = 0;
+    buttonChangeLight = 0;
+    buttonIncreaseTime = 0;
+    buttonDecreaseTime = 0;
+    buttonConfirm = 0;
 end
 
 always #10 clk = ~clk;
@@ -36,7 +42,7 @@ initial begin
     #2; buttonConfirm = 0;
     #50; buttonConfig = 1;
     #2; buttonConfig = 0;
-    #400; $finish;
+    #100; $finish;
 end
 
 endmodule
