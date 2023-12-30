@@ -1,4 +1,4 @@
-module clkDivider(input clk, output clkOut);
+module clkDivider(input clk, output reg clkOut);
     reg[25:0] counter = 0;
     parameter DIVISOR = 125_000_000;
     always@(posedge clk) begin
