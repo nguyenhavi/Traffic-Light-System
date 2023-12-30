@@ -92,51 +92,57 @@ module main(
     sevenSegmentDisplay display7Led2(timeLane2, led7_3, led7_4);
     clkDivider clkDiv(clk, clkOut);
     
-    assign state = enable == autoMode ? stateAuto : enable == mannualMode ? stateMannual : stateConfig;
-    assign timeLane1 = enable == autoMode ? timeLane1Auto : enable == mannualMode ? timeLane1Mannual : timeLane1Config;
-    assign timeLane2 = enable == autoMode ? timeLane2Auto : enable == mannualMode ? timeLane2Mannual : timeLane2Config;
+    assign state     = enable == autoMode    ? stateAuto :
+                       enable == mannualMode ? stateMannual : 
+                                               stateConfig;
+    assign timeLane1 = enable == autoMode    ? timeLane1Auto :
+                       enable == mannualMode ? timeLane1Mannual : 
+                                               timeLane1Config;
+    assign timeLane2 = enable == autoMode    ? timeLane2Auto : 
+                       enable == mannualMode ? timeLane2Mannual : 
+                                               timeLane2Config;
 
     autoMode auto(
-        clkOut, 
-        reset, 
-        enable, 
-        greenTime, 
-        yellowTime, 
-        redTime,
-        timeLane1Auto,
-        timeLane2Auto,
-        stateAuto
+        .clk(clkOut),
+        .reset(reset),
+        .enable(enable),
+        .greenTime(greenTime),
+        .yellowTime(yellowTime),
+        .redTime(redTime),
+        .timeLane1(timeLane1Auto),
+        .timeLane2(timeLane2Auto),
+        .state(stateAuto) 
     );
     
     mannualMode mannual(
-        clkOut,
-        reset,
-        enable,
-        buttonChangeLight,
-        greenTime,
-        yellowTime,
-        redTime,
-        timeLane1Mannual,
-        timeLane2Mannual,
-        stateMannual
+        .clk(clkOut),
+        .reset(reset),
+        .enable(enable),
+        .buttonChangeLight(buttonChangeLight),
+        .greenTime(greenTime),
+        .yellowTime(yellowTime),
+        .redTime(redTime),    
+        .timeLane1(timeLane1Mannual),
+        .timeLane2(timeLane2Mannual),
+        .state(stateMannual)
     );
     
     configMode configuration(
-        clkOut,
-        reset,
-        enable,
-        buttonChangeLight,
-        buttonIncreaseTime,
-        buttonDecreaseTime,
-        buttonConfirm,
-        greenTime,
-        yellowTime,
-        redTime,
-        greenTimeModified,
-        yellowTimeModified,
-        redTimeModified,
-        timeLane1Config,
-        timeLane2Config,
-        stateConfig
+        .clk(clkOut),
+        .reset(reset),
+        .enable(enable),
+        .buttonChangeLight(buttonChangeLight),
+        .buttonIncreaseTime(buttonIncreaseTime),
+        .buttonDecreaseTime(buttonDecreaseTime),
+        .buttonConfirm(buttonConfirm),
+        .greenTime(greenTime),
+        .yellowTime(yellowTime),
+        .redTime(redTime),
+        .greenTimeModified(greenTimeModified),
+        .yellowTimeModified(yellowTimeModified),
+        .redTimeModified(redTimeModified),
+        .timeLane1(timeLane1Config),
+        .timeLane2(timeLane2Config),
+        .state(stateConfig) 
     );
 endmodule
