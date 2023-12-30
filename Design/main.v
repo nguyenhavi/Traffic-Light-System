@@ -80,6 +80,7 @@ module main(
                     enable <= autoMode;
                 end
             end
+            default: enable <= autoMode;
         endcase
     end
     
