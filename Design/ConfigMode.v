@@ -1,5 +1,6 @@
 `include "define.v"
 
+
 module configMode(
     input clk,
     input reset,
