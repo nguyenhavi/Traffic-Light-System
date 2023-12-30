@@ -33,8 +33,8 @@ module autoMode(
                         timeLane1 <= yellowTime - 1;
                     end else begin
                         timeLane1 <= timeLane1 - 1;
+                        timeLane2 <= timeLane2 - 1;
                     end 
-                    timeLane2 <= timeLane2 - 1;
                 end
                 YR: begin
                     if (timeLane1 == 0) begin
@@ -51,9 +51,9 @@ module autoMode(
                         state <= RY;
                         timeLane2 <= yellowTime - 1;
                     end else begin
+                        timeLane1 <= timeLane1 - 1;
                         timeLane2 <= timeLane2 - 1;                    
                     end 
-                    timeLane1 <= timeLane1 - 1;
                 end
                 RY: begin
                     if (timeLane2 == 0) begin
@@ -61,8 +61,8 @@ module autoMode(
                         timeLane1 <= greenTime - 1;
                         timeLane2 <= redTime - 1;
                     end else begin
-                        timeLane2 <= timeLane2 - 1; 
                         timeLane1 <= timeLane1 - 1;
+                        timeLane2 <= timeLane2 - 1; 
                     end
                 end
                 default: begin
