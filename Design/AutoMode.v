@@ -1,7 +1,7 @@
 module autoMode(
     input clk,
     input reset,
-    input[2:0] enable,
+    input enable,
     input[6:0] greenTime,
     input[6:0] yellowTime,
     input[6:0] redTime,
@@ -16,7 +16,7 @@ module autoMode(
     parameter RY = 6;    
     
     always @(enable) begin
-        if(enable == 3'b100) begin
+        if(enable == 1) begin
             state = GR;
             timeLane1 = greenTime;
             timeLane2 = redTime;     
@@ -25,7 +25,7 @@ module autoMode(
     end
     
     always @(posedge clk) begin
-        if (enable == 3'b100) begin
+        if (enable == 1) begin
             case (state)
                 GR: begin
                     if (timeLane1 == 1) begin

@@ -4,7 +4,7 @@
 module configMode(
     input clk,
     input reset,
-    input[2:0] enable,
+    input enable,
     input buttonChangeLight,
     input buttonIncreaseTime,
     input buttonDecreaseTime,
@@ -29,7 +29,7 @@ module configMode(
     reg[6:0] yellowTemp;
     
     always@(enable) begin
-        if(enable == 3'b010) begin
+        if(enable == 1) begin
             state = RR;
             redTemp = redTime;
             greenTemp = greenTime;
@@ -43,7 +43,7 @@ module configMode(
     end
     
     always@(*) begin
-        if(enable == 3'b010) begin
+        if(enable == 1) begin
             case(state)
                 RR: begin
                     if(buttonChangeLight) begin

@@ -1,7 +1,7 @@
 module mannualMode(
     input clk,
     input reset,
-    input[2:0] enable,
+    input enable,
     input buttonChangeLight,
     input[6:0] greenTime,
     input[6:0] yellowTime,
@@ -19,7 +19,7 @@ module mannualMode(
     reg[6:0] tempYellowTime;
     
     always@(enable) begin
-        if(enable == 3'b001) begin
+        if(enable == 1) begin
             tempYellowTime = yellowTime;
             state = GR;    
             timeLane1 = 7'b1111111;
@@ -28,7 +28,7 @@ module mannualMode(
     end
 
     always@(posedge clk or posedge buttonChangeLight) begin
-        if(enable == 3'b001) begin
+        if(enable == 1) begin
             case (state)
                 GR: begin
                     if(buttonChangeLight == 1) state <= YR;

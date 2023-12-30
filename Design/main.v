@@ -19,8 +19,8 @@ module main(
     reg[2:0] enable;
     /*
         Enable 100 means traffic system in auto mode
-        Enable 010 means traffic system in mannual mode
-        Enable 001 means traffic system in config mode
+        Enable 010 means traffic system in config mode
+        Enable 001 means traffic system in manual mode
     */
     
     parameter autoMode = 3'b100;
@@ -105,7 +105,7 @@ module main(
     autoMode auto(
         .clk(clkOut),
         .reset(reset),
-        .enable(enable),
+        .enable(enable[2]),
         .greenTime(greenTime),
         .yellowTime(yellowTime),
         .redTime(redTime),
@@ -117,7 +117,7 @@ module main(
     mannualMode mannual(
         .clk(clkOut),
         .reset(reset),
-        .enable(enable),
+        .enable(enable[0]),
         .buttonChangeLight(buttonChangeLight),
         .greenTime(greenTime),
         .yellowTime(yellowTime),
@@ -130,7 +130,7 @@ module main(
     configMode configuration(
         .clk(clkOut),
         .reset(reset),
-        .enable(enable),
+        .enable(enable[1]),
         .buttonChangeLight(buttonChangeLight),
         .buttonIncreaseTime(buttonIncreaseTime),
         .buttonDecreaseTime(buttonDecreaseTime),
