@@ -28,21 +28,21 @@ module configMode(
     reg[6:0] greenTemp;
     reg[6:0] yellowTemp;
     
-    always@(enable) begin
-        if(enable == 1) begin
-            state = RR;
-            redTemp = redTime;
-            greenTemp = greenTime;
-            yellowTemp = yellowTime;
-            greenTimeModified = greenTime;
-            redTimeModified = redTime;
-            yellowTimeModified = yellowTime;
-            timeLane1 = redTemp;
-            timeLane2 = redTemp;
-        end
-    end
+    // always@(enable) begin
+    //     if(enable == 1) begin
+    //         state = RR;
+    //         redTemp = redTime;
+    //         greenTemp = greenTime;
+    //         yellowTemp = yellowTime;
+    //         greenTimeModified = greenTime;
+    //         redTimeModified = redTime;
+    //         yellowTimeModified = yellowTime;
+    //         timeLane1 = redTemp;
+    //         timeLane2 = redTemp;
+    //     end
+    // end
     
-    always@(*) begin
+    always@(posedge clk) begin
         if(enable == 1) begin
             case(state)
                 RR: begin
@@ -149,6 +149,16 @@ module configMode(
                 end
                 default: state <= RR;
             endcase
+        end else begin
+            state = RR;
+            redTemp = redTime;
+            greenTemp = greenTime;
+            yellowTemp = yellowTime;
+            greenTimeModified = greenTime;
+            redTimeModified = redTime;
+            yellowTimeModified = yellowTime;
+            timeLane1 = redTemp;
+            timeLane2 = redTemp;
         end
     end
 

@@ -57,31 +57,35 @@ module main(
     wire[6:0] timeLane2Config;  
     //These two timelanes is pass to sevenSegmentDisplay module
     
-    always@(posedge reset) begin
+    // always@(posedge reset) begin
+    //     if(reset) begin
+    //         enable <= autoMode;
+    //     end
+    // end
+    
+    always@(posedge clk) begin
         if(reset) begin
             enable <= autoMode;
-        end
-    end
-    
-    always@(posedge buttonChangeMode or posedge buttonConfig) begin
-        case(enable)
-            autoMode: begin 
-                if(buttonChangeMode == 1) enable <= mannualMode;
-                else if (buttonConfig == 1) enable <= configMode;
-            end 
-            mannualMode: begin
-                if(buttonChangeMode == 1) enable <= autoMode;
-            end
-            configMode: begin
-                if(buttonConfig == 1) begin
-                    greenTime <= greenTimeModified;
-                    redTime <= redTimeModified;
-                    yellowTime <= yellowTimeModified;
-                    enable <= autoMode;
+        end else begin
+            case(enable)
+                autoMode: begin 
+                    if(buttonChangeMode == 1) enable <= mannualMode;
+                    else if (buttonConfig == 1) enable <= configMode;
+                end 
+                mannualMode: begin
+                    if(buttonChangeMode == 1) enable <= autoMode;
                 end
-            end
-            default: enable <= autoMode;
-        endcase
+                configMode: begin
+                    if(buttonConfig == 1) begin
+                        greenTime <= greenTimeModified;
+                        redTime <= redTimeModified;
+                        yellowTime <= yellowTimeModified;
+                        enable <= autoMode;
+                    end
+                end
+                default: enable <= autoMode;
+            endcase
+        end
     end
     
     wire clkOut;

@@ -15,14 +15,14 @@ module autoMode(
     parameter RG = 5;
     parameter RY = 6;    
     
-    always @(enable) begin
-        if(enable == 1) begin
-            state = GR;
-            timeLane1 = greenTime;
-            timeLane2 = redTime;     
-        end
+    // always @(enable) begin
+    //     if(enable == 1) begin
+    //         state <= GR;
+    //         timeLane1 <= greenTime;
+    //         timeLane2 <= redTime;     
+    //     end
 
-    end
+    // end
     
     always @(posedge clk) begin
         if (enable == 1) begin
@@ -71,6 +71,10 @@ module autoMode(
                     timeLane2 <= redTime - 1;
                 end
             endcase
+        end else begin
+            state <= GR;
+            timeLane1 <= greenTime;
+            timeLane2 <= redTime;
         end
     end
 endmodule

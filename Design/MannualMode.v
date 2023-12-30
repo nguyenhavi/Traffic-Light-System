@@ -18,16 +18,16 @@ module mannualMode(
 
     reg[6:0] tempYellowTime;
     
-    always@(enable) begin
-        if(enable == 1) begin
-            tempYellowTime = yellowTime;
-            state = GR;    
-            timeLane1 = 7'b1111111;
-            timeLane2 = 7'b1111111;
-        end
-    end
+    // always@(enable) begin
+    //     if(enable == 1) begin
+    //         tempYellowTime = yellowTime;
+    //         state = GR;    
+    //         timeLane1 = 7'b1111111;
+    //         timeLane2 = 7'b1111111;
+    //     end
+    // end
 
-    always@(posedge clk or posedge buttonChangeLight) begin
+    always@(posedge clk) begin
         if(enable == 1) begin
             case (state)
                 GR: begin
@@ -50,6 +50,11 @@ module mannualMode(
                 end
                 default: state <= GR;                
             endcase
+        end else begin
+            tempYellowTime = yellowTime;
+            state = GR;    
+            timeLane1 = 7'b1111111;
+            timeLane2 = 7'b1111111;
         end
     end
 
