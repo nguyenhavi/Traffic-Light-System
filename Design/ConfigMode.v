@@ -72,7 +72,7 @@ module configMode(
                         end
                     end
                     if(buttonConfirm) begin
-                        if(redTemp > greenTemp && red_time_o > yellowTemp && redTemp == greenTemp + yellowTemp) begin
+                        if(redTemp > greenTemp && redTemp > yellowTemp && redTemp == greenTemp + yellowTemp) begin
                             redTimeModified = redTemp;
                             greenTimeModified = greenTemp;
                             yellowTimeModified = yellowTemp;
@@ -106,7 +106,7 @@ module configMode(
                         end
                     end
                     if(buttonConfirm) begin
-                        if(redTemp > greenTemp && red_time_o > yellowTemp && redTemp == greenTemp + yellowTemp) begin
+                        if(redTemp > greenTemp && redTemp > yellowTemp && redTemp == greenTemp + yellowTemp) begin
                             redTimeModified = redTemp;
                             greenTimeModified = greenTemp;
                             yellowTimeModified = yellowTemp;
@@ -140,7 +140,7 @@ module configMode(
                         end
                     end
                     if(buttonConfirm) begin
-                        if(redTemp > greenTemp && red_time_o > yellowTemp && redTemp == greenTemp + yellowTemp) begin
+                        if(redTemp > greenTemp && redTemp > yellowTemp && redTemp == greenTemp + yellowTemp) begin
                             redTimeModified = redTemp;
                             greenTimeModified = greenTemp;
                             yellowTimeModified = yellowTemp;
