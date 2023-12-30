@@ -57,13 +57,6 @@ module main(
     wire[6:0] timeLane2Config;  
     //These two timelanes is pass to sevenSegmentDisplay module
     
-    always@(posedge buttonConfirm) begin
-        #1; // Wait for 1 clock cycle because signals is not update immediately 
-        greenTime <= greenTimeModified;
-        redTime <= redTimeModified;
-        yellowTime <= yellowTimeModified;
-    end
-    
     always@(posedge reset) begin
         if(reset) begin
             enable <= autoMode;
@@ -80,7 +73,12 @@ module main(
                 if(buttonChangeMode == 1) enable <= autoMode;
             end
             configMode: begin
-                if(buttonConfig == 1) enable <= autoMode;
+                if(buttonConfig == 1) begin
+                    greenTime <= greenTimeModified;
+                    redTime <= redTimeModified;
+                    yellowTime <= yellowTimeModified;
+                    enable <= autoMode;
+                end
             end
         endcase
     end
